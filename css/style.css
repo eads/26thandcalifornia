@@ -1,11 +1,37 @@
 /* Account for fixed nav */
 body {
-    padding-top: 70px;
+    padding-top: 40px;
+    overflow: hidden;
 }
 
-/* Make room for spinner */
-#content { 
-    min-height: 300px;
+#menu {
+    position:absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+/* Grid */
+#inmate-table {
+    position: absolute;
+    top: 40px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+.slick-header {
+  border: 1px solid gray;
+  border-top: 0;
+  line-height: 24px;
+  background-color: #eee;
+}
+.slick-header label {
+  display: inline-block;
+  font-weight: bold;
+  margin: auto auto auto 6px;
+}
+.slick-viewport {
+    background-color: #fff;
 }
 
 @media (max-width: 979px) {
