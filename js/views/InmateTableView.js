@@ -11,6 +11,10 @@ define([
     // Templates
     'text!templates/inmate_table.html'
 ], function($, _, Backbone, Slick, InmateCollection, inmate_table) {
+    function NumericSorter(a, b) {
+      var x = a[sortcol], y = b[sortcol];
+      return sortdir * (x == y ? 0 : (x > y ? 1 : -1));
+    }
 
     var InmateTableView = Backbone.View.extend({
         collection: InmateCollection,
@@ -18,17 +22,16 @@ define([
         initialize: function(options) {
             this.container = $('<div id="inmate-table">').appendTo(this.$el);
             var columns = [
-                {'id': 'jail_id', 'name': 'jail_id', 'field': 'jail_id'},
-                {'id': 'booking_date', 'name': 'booking_date', 'field': 'booking_date'},
-                {'id': 'age_at_booking', 'name': 'age_at_booking', 'field': 'age_at_booking', 'sortable': true},
-                {'id': 'bail_amount', 'name': 'bail_amount', 'field': 'bail_amount', 'sortable': true},
-                {'id': 'charges', 'name': 'charges', 'field': 'charges'},
-                {'id': 'charges_citation', 'name': 'charges_citation', 'field': 'charges_citation'},
-                {'id': 'gender', 'name': 'gender', 'field': 'gender'},
-                {'id': 'race', 'name': 'race', 'field': 'race'},
-                {'id': 'housing_location', 'name': 'housing_location', 'field': 'housing_location'},
-                {'id': 'stay_length', 'name': 'stay_length', 'field': 'stay_length'},
-                {'id': 'discharge_date_earliest', 'name': 'discharge_date_earliest', 'field': 'discharge_date_earliest'},
+                {'id': 'jail_id', 'name': 'Jail ID', 'field': 'jail_id'},
+                {'id': 'booking_date', 'name': 'Booking date', 'field': 'booking_date'},
+                {'id': 'age_at_booking', 'name': 'Age at booking', 'field': 'age_at_booking', 'sortable': true, 'width': 60},
+                {'id': 'bail_amount', 'name': 'Bail amount', 'field': 'bail_amount', 'sortable': true, 'width': 60},
+                {'id': 'charges_citation', 'name': 'Citation', 'field': 'charges_citation'},
+                {'id': 'gender', 'name': 'Gender', 'field': 'gender', 'width': 40},
+                {'id': 'race', 'name': 'Race', 'field': 'race', 'width': 40},
+                {'id': 'housing_location', 'name': 'Housing location', 'field': 'housing_location'},
+                {'id': 'stay_length', 'name': 'Stay length', 'field': 'stay_length', 'width': 40},
+                {'id': 'discharge_date_earliest', 'name': 'Discharge date', 'field': 'discharge_date_earliest'},
             ];
             this.grid = new Slick.Grid('#inmate-table', [], columns, {
                 enableCellNavigation: true,
@@ -36,6 +39,8 @@ define([
                 enableColumnReorder: false,
             });
             this.grid.setSelectionModel(new Slick.CellSelectionModel());
+            var copyManager = new Slick.CellCopyManager();
+            this.grid.registerPlugin(copyManager);
 
             // Call 'spin' when collection AJAX request starts.
             this.collection.bind('fetch', this.spin, this);

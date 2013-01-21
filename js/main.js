@@ -15,6 +15,7 @@ require.config({
         'slickgrid.core': '../lib/slickgrid/slick.core',
         'slickgrid.grid': '../lib/slickgrid/slick.grid',
         'slickgrid.dataview': '../lib/slickgrid/slick.dataview',
+        'slickgrid.plugins.cellcopymanager': '../lib/slickgrid/plugins/slick.cellcopymanager',
         'slickgrid.plugins.cellrangeselector': '../lib/slickgrid/plugins/slick.cellrangeselector',
         'slickgrid.plugins.cellrangedecorator': '../lib/slickgrid/plugins/slick.cellrangedecorator',
         'slickgrid.plugins.cellselectionmodel': '../lib/slickgrid/plugins/slick.cellselectionmodel',
@@ -23,7 +24,7 @@ require.config({
     },
     shim: {
       'slickgrid.grid': {
-        deps: ['jquery.ui', 'jquery.event.drag', 'slickgrid.core', 'slickgrid.plugins.cellrangedecorator', 'slickgrid.plugins.cellrangeselector', 'slickgrid.plugins.cellselectionmodel'],
+        deps: ['jquery.ui', 'jquery.event.drag', 'slickgrid.core', 'slickgrid.plugins.cellcopymanager', 'slickgrid.plugins.cellrangedecorator', 'slickgrid.plugins.cellrangeselector', 'slickgrid.plugins.cellselectionmodel'],
         exports: 'Slick',
       }
     }

@@ -33,6 +33,13 @@ body {
 .slick-viewport {
     background-color: #fff;
 }
+.slick-cell {
+    padding: 2px 5px;
+    font-size: 13px;
+}
+.slick-cell.selected {
+    background-color: #EEF4FF;
+}
 
 @media (max-width: 979px) {
     /* Nav isn't fixed on smallish devices, so padding needs to go away. */
